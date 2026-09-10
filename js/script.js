@@ -42,6 +42,65 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* -------------------------------------------------
+       Interatividade: elementos aparecem suavemente
+       conforme entram na tela (estilo Apple)
+    ------------------------------------------------- */
+    var revealTargets = document.querySelectorAll(
+        '.eyebrow, .section-title, .section-title-light, ' +
+        '.about-photo, .about-text, .link-arrow, ' +
+        '.talk-card, .book-slide, .video-slide, .social-slide, ' +
+        '.contact-list, .contact-form'
+    );
+
+    revealTargets.forEach(function (el) {
+        if (!el.closest('.hero')) {
+            el.classList.add('reveal');
+        }
+    });
+
+    if ('IntersectionObserver' in window) {
+        var revealObserver = new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(function (el) {
+            revealObserver.observe(el);
+        });
+    } else {
+        // navegador sem suporte: mostra tudo direto, sem animação
+        document.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('in-view');
+        });
+    }
+
+    /* -------------------------------------------------
+       Parallax sutil no emblema do hero ao rolar
+    ------------------------------------------------- */
+    var heroLogo = document.querySelector('.hero-badge-logo');
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (heroLogo && !prefersReducedMotion) {
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+            if (!ticking) {
+                window.requestAnimationFrame(function () {
+                    var offset = window.scrollY;
+                    if (offset < 700) {
+                        heroLogo.style.transform = 'translateY(' + (offset * 0.12) + 'px)';
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+
+    /* -------------------------------------------------
        Carrossel (livros e vídeos) — JS puro (setas +
        indicadores). A rolagem em si funciona por
        scroll-snap no CSS, então continua utilizável
@@ -69,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll('button'));
 
-        function updateActiveDot() {
+        function updateActiveItem() {
             var trackCenter = track.scrollLeft + track.offsetWidth / 2;
             var closestIndex = 0;
             var closestDistance = Infinity;
@@ -86,12 +145,17 @@ document.addEventListener('DOMContentLoaded', function () {
             dots.forEach(function (dot, i) {
                 dot.classList.toggle('active', i === closestIndex);
             });
+            slides.forEach(function (slide, i) {
+                slide.classList.toggle('active', i === closestIndex);
+            });
         }
+
+        updateActiveItem();
 
         var scrollTimeout;
         track.addEventListener('scroll', function () {
             clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(updateActiveDot, 100);
+            scrollTimeout = setTimeout(updateActiveItem, 80);
         });
 
         if (prevBtn) {
@@ -104,10 +168,51 @@ document.addEventListener('DOMContentLoaded', function () {
                 track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
             });
         }
+
+        /* Arraste suave com o mouse (desktop) */
+        var isDragging = false;
+        var dragStartX = 0;
+        var dragStartScroll = 0;
+        var didDrag = false;
+
+        track.addEventListener('pointerdown', function (e) {
+            if (e.pointerType === 'touch') return; // no touch o scroll nativo já é ótimo
+            isDragging = true;
+            didDrag = false;
+            dragStartX = e.pageX;
+            dragStartScroll = track.scrollLeft;
+            track.classList.add('dragging');
+            track.setPointerCapture(e.pointerId);
+        });
+
+        track.addEventListener('pointermove', function (e) {
+            if (!isDragging) return;
+            var delta = e.pageX - dragStartX;
+            if (Math.abs(delta) > 4) didDrag = true;
+            track.scrollLeft = dragStartScroll - delta;
+        });
+
+        function endDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            track.classList.remove('dragging');
+        }
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('pointerleave', endDrag);
+
+        // evita que o arraste dispare cliques indesejados em links/botões dentro do slide
+        track.addEventListener('click', function (e) {
+            if (didDrag) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true);
     }
 
     setupCarousel('bookCarousel', 'bookDots', 'bookPrev', 'bookNext', '.book-slide', 300);
     setupCarousel('videoCarousel', 'videoDots', 'videoPrev', 'videoNext', '.video-slide', 440);
+    setupCarousel('socialCarousel', 'socialDots', 'socialPrev', 'socialNext', '.social-slide', 280);
 
     /* -------------------------------------------------
        Formulário de contato

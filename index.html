@@ -41,25 +41,19 @@
 
 <!-- ===================== HERO ===================== -->
 <section id="topo" class="hero">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <p class="eyebrow-free">Educação financeira, na prática</p>
-                <h1 class="hero-title">Organizar o dinheiro não é sobre <em>planilha</em>. É sobre <em>liberdade</em>.</h1>
-                <p class="hero-lead">
-                    Grinaldo Lima leva educação financeira para empresas, escolas e eventos por todo o Brasil —
-                    de forma simples, direta e aplicável ao dia a dia de quem ouve.
-                </p>
-                <div class="hero-actions">
-                    <a href="#contato" class="btn btn-gold">Contratar uma palestra</a>
-                    <a href="#sobre" class="btn btn-outline-cream">Conhecer o trabalho</a>
-                </div>
-            </div>
-            <div class="col-lg-5 text-center">
-                <div class="hero-badge">
-                    <img src="img/logo-grinaldo-lima.png" alt="Grinaldo Lima — Educador Financeiro" class="hero-badge-logo">
-                </div>
-            </div>
+    <div class="container hero-inner">
+        <p class="eyebrow-free">Educação financeira, na prática</p>
+        <h1 class="hero-title">Organizar o dinheiro não é sobre <em>planilha</em>. É sobre <em>liberdade</em>.</h1>
+        <p class="hero-lead">
+            Grinaldo Lima leva educação financeira para empresas, escolas e eventos por todo o Brasil —
+            de forma simples, direta e aplicável ao dia a dia de quem ouve.
+        </p>
+        <div class="hero-actions">
+            <a href="#contato" class="btn btn-gold">Contratar uma palestra</a>
+            <a href="#sobre" class="btn btn-outline-cream">Conhecer o trabalho</a>
+        </div>
+        <div class="hero-badge">
+            <img src="img/logo-grinaldo-lima.png" alt="Grinaldo Lima — Educador Financeiro" class="hero-badge-logo">
         </div>
     </div>
 </section>
@@ -77,9 +71,13 @@
                 <p class="eyebrow">Sobre mim</p>
                 <h2 class="section-title">Grinaldo Lima</h2>
                 <p class="about-text">
-                    Formado em Administração de Empresas, Grinaldo Lima é palestrante, escritor e educador financeiro.
-                    É presidente da <strong>APOEF — Associação de Profissionais Orientadores e Educadores em Finanças</strong>,
-                    que reúne associados em todo o Brasil dedicados a levar saúde financeira a mais pessoas.
+                    Grinaldo Lima é Administrador de Empresas, Educador Financeiro, Consultor e Mentor
+                    Empresarial, Empresário Contábil, Escritor e Palestrante.
+                </p>
+                <p class="about-text">
+                    É criador do <strong>Método OFP — Organização Financeira na Prática</strong>, um treinamento
+                    estruturado em 5 passos: Diagnóstico Financeiro, Orçamento Doméstico, Reserva de Emergência,
+                    Crédito Fácil e Perigoso, e Planejamento Financeiro.
                 </p>
                 <p class="about-text">
                     Autor do livro <em>Saúde Financeira</em>, defende que educação financeira deveria ser assunto
@@ -226,77 +224,102 @@
 
     <div class="container">
         <p class="eyebrow-free mt-5 pt-5">Redes sociais</p>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <a href="https://www.youtube.com/@grinaldolima" target="_blank" rel="noopener" class="social-card">
+    </div>
+
+    <div class="media-carousel-wrap">
+        <button class="carousel-arrow carousel-prev" id="socialPrev" aria-label="Rede social anterior">‹</button>
+
+        <div class="social-carousel" id="socialCarousel">
+            <div class="social-slide">
+                <a href="https://www.youtube.com/@grinaldolimaoficial" target="_blank" rel="noopener" class="social-card">
                     <span class="social-card-label">YouTube</span>
                     <span class="social-card-sub">Vídeos sobre educação financeira</span>
                 </a>
             </div>
-            <div class="col-md-4 mb-4">
-                <a href="https://www.facebook.com/grinaldo.lima/" target="_blank" rel="noopener" class="social-card">
+            <div class="social-slide">
+                <a href="https://www.instagram.com/grinaldolima/" target="_blank" rel="noopener" class="social-card">
+                    <span class="social-card-label">Instagram</span>
+                    <span class="social-card-sub">Bastidores e conteúdo do dia a dia</span>
+                </a>
+            </div>
+            <div class="social-slide">
+                <a href="https://www.facebook.com/share/1HcQV9GagN/" target="_blank" rel="noopener" class="social-card">
                     <span class="social-card-label">Facebook</span>
                     <span class="social-card-sub">Novidades e bastidores</span>
                 </a>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="social-slide">
                 <a href="https://www.linkedin.com/in/grinaldo-lima-4a0bb3282/" target="_blank" rel="noopener" class="social-card">
                     <span class="social-card-label">LinkedIn</span>
                     <span class="social-card-sub">Educação financeira para carreira</span>
                 </a>
             </div>
         </div>
+
+        <button class="carousel-arrow carousel-next" id="socialNext" aria-label="Próxima rede social">›</button>
     </div>
+
+    <div class="carousel-dots" id="socialDots"></div>
 </section>
 
 <!-- ===================== CONTATO ===================== -->
 <section id="contato" class="section section-cream">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <p class="eyebrow">Contato</p>
-                <h2 class="section-title">Contrate uma palestra</h2>
-                <p class="about-text">
-                    Preencha o formulário ou fale diretamente pelos canais abaixo. Retornamos o mais breve possível.
-                </p>
-                <ul class="contact-list">
-                    <li><strong>WhatsApp:</strong> <a href="https://wa.me/5511974990802" target="_blank" rel="noopener">(11) 97499-0802</a></li>
-                    <!-- TODO: inserir e-mail real do cliente -->
-                    <li><strong>E-mail:</strong> contato@grinaldolima.com.br</li>
-                </ul>
-            </div>
-            <div class="col-lg-6">
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" class="form-control" id="nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" class="form-control" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensagem">Mensagem</label>
-                        <textarea class="form-control" id="mensagem" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-gold">Enviar mensagem</button>
-                </form>
-            </div>
+    <div class="container contact-inner">
+        <div class="contact-info">
+            <p class="eyebrow">Contato</p>
+            <h2 class="section-title">Contrate uma palestra</h2>
+            <p class="about-text">
+                Preencha o formulário ou fale diretamente pelos canais abaixo. Retornamos o mais breve possível.
+            </p>
+            <ul class="contact-list">
+                <li>
+                    <span class="contact-list-label">WhatsApp</span>
+                    <a href="https://wa.me/5511974990802" target="_blank" rel="noopener">(11) 97499-0802</a>
+                </li>
+                <!-- TODO: inserir e-mail real do cliente -->
+                <li>
+                    <span class="contact-list-label">E-mail</span>
+                    <a href="mailto:contato@grinaldolima.com.br">contato@grinaldolima.com.br</a>
+                </li>
+            </ul>
         </div>
+
+        <form class="contact-form" id="contactForm">
+            <div class="form-field">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-field">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-field">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold">Enviar mensagem</button>
+        </form>
     </div>
 </section>
 
 <!-- ===================== FOOTER ===================== -->
 <footer class="site-footer">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6">
+    <div class="container footer-inner">
+        <div class="footer-top">
+            <a class="footer-brand" href="#topo">
                 <img src="img/logo-grinaldo-lima.png" alt="Grinaldo Lima — Educador Financeiro" class="footer-logo">
                 <span class="footer-brand-name">Grinaldo Lima</span>
-            </div>
-            <div class="col-md-6 text-md-right">
-                <p class="footer-note">© 2026 Grinaldo Lima — Presidente da APOEF. Todos os direitos reservados.</p>
-            </div>
+            </a>
+            <nav class="footer-links">
+                <a href="https://www.youtube.com/@grinaldolimaoficial" target="_blank" rel="noopener">YouTube</a>
+                <a href="https://www.instagram.com/grinaldolima/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.facebook.com/share/1HcQV9GagN/" target="_blank" rel="noopener">Facebook</a>
+                <a href="https://www.linkedin.com/in/grinaldo-lima-4a0bb3282/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://wa.me/5511974990802" target="_blank" rel="noopener">WhatsApp</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-note">© 2026 Grinaldo Lima — Educador Financeiro. Todos os direitos reservados.</p>
         </div>
     </div>
 </footer>
