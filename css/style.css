@@ -261,6 +261,9 @@ body {
 
 .hero .eyebrow-free {
     color: var(--gold);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
 }
 
 /* Entrada animada do hero — CSS puro, roda mesmo sem JavaScript */
