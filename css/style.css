@@ -1011,9 +1011,39 @@ button:focus-visible,
     outline: 2px solid var(--gold);
     outline-offset: 2px;
 }
-
 @media (prefers-reduced-motion: reduce) {
     * {
         transition: none !important;
     }
+}
+
+/* Estilos para o Carrossel de Redes Sociais */
+.badge-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: rgba(197, 160, 89, 0.15); /* Tom suave do dourado */
+    color: #c5a059; /* Cor gold do tema */
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+
+.carousel-preview-list {
+    background: #f4f1ea; /* Fundo cream suave do site */
+    padding: 12px;
+    border-radius: 6px;
+    margin: 15px 0;
+    font-size: 0.88rem;
+    text-align: left;
+}
+
+.preview-item {
+    padding: 4px 0;
+    border-bottom: 1px border-subtle;
+}
+
+.preview-item:last-child {
+    border-bottom: none;
 }
